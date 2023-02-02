@@ -69,7 +69,7 @@ public class SubStreamHandler<T> extends Thread {
                 T msg = EventMeshClientUtil.buildMessage(message, listener.getProtocolType());
 
                 if (msg instanceof Map) {
-                    logger.info("Received message from Server." + message);
+                    logger.info("Received message from Server:{}" , message);
                 } else {
                     logger.info("Received message from Server.|seq={}|uniqueId={}|", message.getSeqNum(), message.getUniqueId());
                     Subscription streamReply = null;
@@ -91,7 +91,7 @@ public class SubStreamHandler<T> extends Thread {
 
             @Override
             public void onError(Throwable t) {
-                logger.error("Received Server side error: " + t.getMessage());
+                logger.error("Received Server side error: {}" , t.getMessage());
                 close();
             }
 
@@ -127,7 +127,7 @@ public class SubStreamHandler<T> extends Thread {
         try {
             latch.await();
         } catch (InterruptedException e) {
-            logger.error("SubStreamHandler Thread interrupted." + e.getMessage());
+            logger.error("SubStreamHandler Thread interrupted:{}" , e.getMessage());
         }
     }
 
